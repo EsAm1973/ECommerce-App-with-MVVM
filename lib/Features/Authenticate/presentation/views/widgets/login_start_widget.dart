@@ -10,14 +10,15 @@ class LoginScreenStartWidget extends StatelessWidget {
     return Column(
       children: [
         Container(
-          width: 200,
-          height: 200,
+          width: 120,
+          height: 120,
           decoration: const BoxDecoration(
               image: DecorationImage(
             image: AssetImage(AssetsPath.logo),
             fit: BoxFit.contain,
           )),
         ),
+        const SizedBox(height: 20,),
         const Text(
           'Let\'s Sign In',
           style: Styles.textStyle30,
