@@ -34,8 +34,8 @@ class _SplashViewBodyState extends State<SplashViewBody> {
       curve: Curves.easeInOut,
       child: Image.asset(
         AssetsPath.logo,
-        width: 200,
-        height: 200,
+        width: 350,
+        height: 350,
       ),
     );
   }
