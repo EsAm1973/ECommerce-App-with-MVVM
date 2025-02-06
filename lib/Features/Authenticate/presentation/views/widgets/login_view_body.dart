@@ -17,6 +17,7 @@ class LoginViewBody extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(left: 20, right: 20, top: 40),
         child: Form(
+          key: formKey,
           child: Column(
             children: [
               const Center(
@@ -40,7 +41,7 @@ class LoginViewBody extends StatelessWidget {
                 height: 25,
               ),
               LoginButton(
-                onPressed: () {},
+                onPressed: () => login(context),
               ),
               const SizedBox(
                 height: 40,
@@ -58,5 +59,35 @@ class LoginViewBody extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void login(BuildContext context) {
+    if (formKey.currentState!.validate()) {
+      // Form is valid, proceed with login logic
+      final String email = emailController.text;
+      final String password = passwordController.text;
+
+      // TODO: Implement your login logic here (e.g., API call, Firebase Auth, etc.)
+
+      // Example: Simulate a successful login
+      print('Email: $email');
+      print('Password: $password');
+
+      // Show success message or navigate to the next screen
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Login successful!')),
+      );
+
+      // Example: Navigate to the home screen after successful login
+      // Navigator.pushReplacement(
+      //   context,
+      //   MaterialPageRoute(builder: (context) => HomeScreen()),
+      // );
+    } else {
+      // Form is invalid
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please fix the errors in the form.')),
+      );
+    }
   }
 }

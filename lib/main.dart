@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.light().copyWith(
         scaffoldBackgroundColor: kPrimaryColor,
       ),
-      home: const SignupView(),
+      home: const LoginView(),
     );
   }
 }

@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 
 class SignupViewBody extends StatelessWidget {
   SignupViewBody({super.key});
+  final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController passwordConfirmController =
       TextEditingController();
@@ -30,7 +31,9 @@ class SignupViewBody extends StatelessWidget {
               const SizedBox(
                 height: 40,
               ),
-              const SignUpEmailAddressTextFeild(),
+              SignUpEmailAddressTextFeild(
+                emailController: emailController,
+              ),
               const SizedBox(
                 height: 25,
               ),
@@ -48,7 +51,7 @@ class SignupViewBody extends StatelessWidget {
                 height: 25,
               ),
               SignUpButton(
-                onPressed: () {},
+                onPressed: () => signUp(context),
               ),
               const SizedBox(
                 height: 40,
@@ -62,5 +65,45 @@ class SignupViewBody extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void signUp(BuildContext context) {
+    if (formKey.currentState!.validate()) {
+      // Form is valid, proceed with sign-up logic
+      final String email = emailController
+          .text; // Replace with actual email from your email field
+      final String password = passwordController.text;
+      final String confirmPassword = passwordConfirmController.text;
+
+      // Check if passwords match
+      if (password == confirmPassword) {
+        // Passwords match, proceed with sign-up
+        print('Email: $email');
+        print('Password: $password');
+
+        // TODO: Implement your sign-up logic here (e.g., API call, Firebase Auth, etc.)
+
+        // Show success message or navigate to the next screen
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Sign-up successful!')),
+        );
+
+        // Example: Navigate to the home screen after successful sign-up
+        // Navigator.pushReplacement(
+        //   context,
+        //   MaterialPageRoute(builder: (context) => HomeScreen()),
+        // );
+      } else {
+        // Passwords do not match
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Passwords do not match!')),
+        );
+      }
+    } else {
+      // Form is invalid
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please fix the errors in the form.')),
+      );
+    }
   }
 }
