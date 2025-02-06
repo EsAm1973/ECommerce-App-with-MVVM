@@ -3,8 +3,8 @@ import 'package:ecommerce_app/Core/widgets/custom_text_feild.dart';
 import 'package:flutter/material.dart';
 
 class EmailAddressTextFeild extends StatelessWidget {
-  const EmailAddressTextFeild({super.key});
-
+  const EmailAddressTextFeild({super.key, required this.emailController});
+  final TextEditingController emailController;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -20,6 +20,7 @@ class EmailAddressTextFeild extends StatelessWidget {
           height: 5,
         ),
         CustomTextField(
+          controller: emailController,
           hintText: 'Enter your email address',
           prefixIcon: const Icon(Icons.email_outlined),
           keyboardType: TextInputType.emailAddress,

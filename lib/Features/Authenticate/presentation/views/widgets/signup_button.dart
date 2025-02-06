@@ -7,7 +7,7 @@ class SignUpButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomIconTextButton(
-      text: 'Sign In',
+      text: 'Sign Up',
       icon: Icons.arrow_forward_rounded,
       onPressed: onPressed,
     );
