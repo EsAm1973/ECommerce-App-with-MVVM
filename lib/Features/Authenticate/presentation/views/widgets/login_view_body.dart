@@ -1,6 +1,7 @@
 import 'package:ecommerce_app/Features/Authenticate/presentation/views/widgets/login_button.dart';
 import 'package:ecommerce_app/Features/Authenticate/presentation/views/widgets/login_email_textfeild.dart';
 import 'package:ecommerce_app/Features/Authenticate/presentation/views/widgets/login_password_textfeild.dart';
+import 'package:ecommerce_app/Features/Authenticate/presentation/views/widgets/login_signp&forgetpassword.dart';
 import 'package:ecommerce_app/Features/Authenticate/presentation/views/widgets/login_socialmedia_row.dart';
 import 'package:ecommerce_app/Features/Authenticate/presentation/views/widgets/login_start_widget.dart';
 import 'package:flutter/material.dart';
@@ -32,6 +33,10 @@ class LoginViewBody extends StatelessWidget {
               height: 40,
             ),
             SocialMediaIconsRow(),
+            SizedBox(
+              height: 40,
+            ),
+            SignupTextAndForgetPassword(),
           ],
         ),
       ),
