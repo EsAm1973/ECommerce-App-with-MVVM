@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/Features/Authenticate/presentation/views/login_view.dart';
+import 'package:ecommerce_app/Features/Authenticate/presentation/views/signup_view.dart';
 import 'package:ecommerce_app/Features/splash/presentation/views/splash_view.dart';
 import 'package:ecommerce_app/constants.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.light().copyWith(
         scaffoldBackgroundColor: kPrimaryColor,
       ),
-      home: const LoginView(),
+      home: const SignupView(),
     );
   }
 }

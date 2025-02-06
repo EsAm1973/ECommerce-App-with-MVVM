@@ -2,9 +2,11 @@ import 'package:ecommerce_app/Core/utils/assets.dart';
 import 'package:ecommerce_app/Core/utils/styles.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreenStartWidget extends StatelessWidget {
-  const LoginScreenStartWidget({super.key});
-
+class LoginAndSignScreenStartWidget extends StatelessWidget {
+  const LoginAndSignScreenStartWidget(
+      {super.key, required this.title, required this.subtitle});
+  final String title;
+  final String subtitle;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -18,16 +20,18 @@ class LoginScreenStartWidget extends StatelessWidget {
             fit: BoxFit.contain,
           )),
         ),
-        const SizedBox(height: 20,),
-        const Text(
-          'Let\'s Sign In',
+        const SizedBox(
+          height: 20,
+        ),
+        Text(
+          title,
           style: Styles.textStyle30,
         ),
         const SizedBox(
           height: 10,
         ),
         Text(
-          'Find All Products You Need Here',
+          subtitle,
           style: Styles.textStyle16.copyWith(
             fontWeight: FontWeight.normal,
           ),
