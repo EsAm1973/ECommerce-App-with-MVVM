@@ -11,37 +11,37 @@ class LoginViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SingleChildScrollView(
+    return SingleChildScrollView(
       child: Padding(
-        padding: EdgeInsets.only(left: 20, right: 20, top: 40),
+        padding: const EdgeInsets.only(left: 20, right: 20, top: 40),
         child: Column(
           children: [
-            Center(
+            const Center(
                 child: LoginAndSignScreenStartWidget(
               title: 'Let\'s Sign In',
               subtitle: 'Find All Products You Need Here',
             )),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
-            EmailAddressTextFeild(),
-            SizedBox(
+            const EmailAddressTextFeild(),
+            const SizedBox(
               height: 25,
             ),
             PasswordTextFeild(),
-            SizedBox(
+            const SizedBox(
               height: 25,
             ),
-            LoginButton(),
-            SizedBox(
+            const LoginButton(),
+            const SizedBox(
               height: 40,
             ),
-            SocialMediaIconsRow(),
-            SizedBox(
+            const SocialMediaIconsRow(),
+            const SizedBox(
               height: 40,
             ),
-            SignupTextAndForgetPassword(),
-            SizedBox(
+            const SignupTextAndForgetPassword(),
+            const SizedBox(
               height: 20,
             ),
           ],

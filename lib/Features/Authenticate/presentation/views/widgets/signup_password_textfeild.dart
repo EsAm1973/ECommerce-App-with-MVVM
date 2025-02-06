@@ -2,14 +2,16 @@ import 'package:ecommerce_app/Core/utils/styles.dart';
 import 'package:ecommerce_app/Core/widgets/custom_text_feild.dart';
 import 'package:flutter/material.dart';
 
-class PasswordTextFeild extends StatefulWidget {
-  PasswordTextFeild({super.key});
-  final TextEditingController _passwordController = TextEditingController();
+class SignUpPasswordTextFeild extends StatefulWidget {
+  const SignUpPasswordTextFeild({super.key, required this.passwordController});
+  final TextEditingController passwordController;
+
   @override
-  State<PasswordTextFeild> createState() => _PasswordTextFeildState();
+  State<SignUpPasswordTextFeild> createState() =>
+      _SignUpPasswordTextFeildState();
 }
 
-class _PasswordTextFeildState extends State<PasswordTextFeild> {
+class _SignUpPasswordTextFeildState extends State<SignUpPasswordTextFeild> {
   bool _obscurePassword = true;
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class _PasswordTextFeildState extends State<PasswordTextFeild> {
           height: 5,
         ),
         CustomTextField(
-          controller: widget._passwordController,
+          controller: widget.passwordController,
           hintText: 'Enter your password',
           prefixIcon: const Icon(Icons.lock_outline_rounded),
           obscureText: _obscurePassword,
@@ -49,6 +51,7 @@ class _PasswordTextFeildState extends State<PasswordTextFeild> {
             }
             return null;
           },
+          onChanged: (value) {},
         ),
       ],
     );
