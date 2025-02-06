@@ -1,8 +1,8 @@
 import 'package:ecommerce_app/Core/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 
-class LoginButton extends StatelessWidget {
-  const LoginButton({super.key,required this.onPressed});
+class SignUpButton extends StatelessWidget {
+  const SignUpButton({super.key, required this.onPressed});
   final VoidCallback? onPressed;
   @override
   Widget build(BuildContext context) {

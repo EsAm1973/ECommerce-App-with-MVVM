@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class CustomIconTextButton extends StatelessWidget {
   final String text;
   final IconData icon;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final Color backgroundColor;
   final Color textColor;
   final Color iconColor;

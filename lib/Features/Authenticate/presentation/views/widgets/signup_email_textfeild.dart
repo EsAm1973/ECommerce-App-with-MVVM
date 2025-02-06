@@ -19,10 +19,20 @@ class SignUpEmailAddressTextFeild extends StatelessWidget {
         const SizedBox(
           height: 5,
         ),
-        const CustomTextField(
+        CustomTextField(
           hintText: 'Enter your email address',
-          prefixIcon: Icon(Icons.email_outlined),
+          prefixIcon: const Icon(Icons.email_outlined),
           keyboardType: TextInputType.emailAddress,
+          onChanged: (value) {},
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Please enter your email address';
+            }
+            if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
+              return 'Please enter a valid email address';
+            }
+            return null;
+          },
         ),
       ],
     );
