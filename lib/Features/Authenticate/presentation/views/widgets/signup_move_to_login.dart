@@ -1,5 +1,7 @@
+import 'package:ecommerce_app/Core/utils/app_router.dart';
 import 'package:ecommerce_app/Core/utils/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SignUpMoveToLogin extends StatelessWidget {
   const SignUpMoveToLogin({super.key});
@@ -24,7 +26,9 @@ class SignUpMoveToLogin extends StatelessWidget {
               decoration: TextDecoration.underline,
             ),
           ),
-          onPressed: () {},
+          onPressed: () {
+            GoRouter.of(context).pushReplacement(AppRouter.kLoginView);
+          },
         ),
       ],
     );

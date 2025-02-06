@@ -1,5 +1,7 @@
+import 'package:ecommerce_app/Core/utils/app_router.dart';
 import 'package:ecommerce_app/Core/utils/assets.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -29,13 +31,13 @@ class _SplashViewBodyState extends State<SplashViewBody> {
 
   AnimatedOpacity AnimatedImage() {
     return AnimatedOpacity(
-      duration: const Duration(milliseconds: 500),
+      duration: const Duration(seconds: 1),
       opacity: _opacirty,
       curve: Curves.easeInOut,
       child: Image.asset(
         AssetsPath.logo,
-        width: 350,
-        height: 350,
+        width: 200,
+        height: 200,
       ),
     );
   }
@@ -45,9 +47,9 @@ class _SplashViewBodyState extends State<SplashViewBody> {
       setState(() {
         _opacirty = 1.0;
       });
-      // Future.delayed(const Duration(milliseconds: 500), () {
-      //   GoRouter.of(context).push(AppRouter.kHomeView);
-      // });
+      Future.delayed(const Duration(seconds: 2), () {
+        GoRouter.of(context).pushReplacement(AppRouter.kLoginView);
+      });
     });
   }
 }
