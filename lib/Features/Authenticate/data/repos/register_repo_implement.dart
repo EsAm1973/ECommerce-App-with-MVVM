@@ -28,7 +28,16 @@ class RegisterRepoImplement implements RegisterRepo {
     try {
       final response =
           await apiService.post('register', body, headers: headers);
-      return right(response);
+      if (response['status'] == false) {
+        return left(
+          ServerFailure(
+            errorMessage: response['message'],
+          ),
+        );
+      } else {
+        print(response);
+        return right(response);
+      }
     } on Exception catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
