@@ -3,7 +3,9 @@ import 'package:ecommerce_app/Features/Authenticate/presentation/views/widgets/s
 import 'package:ecommerce_app/Features/Authenticate/presentation/views/widgets/signup_confirmpass_textfeild.dart';
 import 'package:ecommerce_app/Features/Authenticate/presentation/views/widgets/signup_email_textfeild.dart';
 import 'package:ecommerce_app/Features/Authenticate/presentation/views/widgets/signup_move_to_login.dart';
+import 'package:ecommerce_app/Features/Authenticate/presentation/views/widgets/signup_name_textfeild.dart';
 import 'package:ecommerce_app/Features/Authenticate/presentation/views/widgets/signup_password_textfeild.dart';
+import 'package:ecommerce_app/Features/Authenticate/presentation/views/widgets/signup_phone_textfeild.dart';
 import 'package:flutter/material.dart';
 
 class SignupViewBody extends StatelessWidget {
@@ -12,6 +14,8 @@ class SignupViewBody extends StatelessWidget {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController passwordConfirmController =
       TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController phoneNumberController = TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -31,8 +35,20 @@ class SignupViewBody extends StatelessWidget {
               const SizedBox(
                 height: 40,
               ),
+              SignUpNameTextFeild(
+                nameController: nameController,
+              ),
+              const SizedBox(
+                height: 25,
+              ),
               SignUpEmailAddressTextFeild(
                 emailController: emailController,
+              ),
+              const SizedBox(
+                height: 25,
+              ),
+              SignUpPhoneTextFeild(
+                phoneNumberController: phoneNumberController,
               ),
               const SizedBox(
                 height: 25,
