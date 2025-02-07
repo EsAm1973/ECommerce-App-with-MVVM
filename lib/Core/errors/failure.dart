@@ -37,7 +37,7 @@ class ServerFailure extends Failure {
   factory ServerFailure.fromResponse(int? statusCode, dynamic response) {
     if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
       //Access the error message in error map in api
-      return ServerFailure(errorMessage: response['error']['message']);
+      return ServerFailure(errorMessage: response['message']);
     } else if (statusCode == 404) {
       return ServerFailure(
           errorMessage: 'Your Requested Content Not Found Try Again Later');
@@ -45,7 +45,7 @@ class ServerFailure extends Failure {
       return ServerFailure(
           errorMessage: 'Internal Server Error Try Again Later');
     } else {
-      return ServerFailure(errorMessage: response['error']['message']);
+      return ServerFailure(errorMessage: response['message']);
     }
   }
 }

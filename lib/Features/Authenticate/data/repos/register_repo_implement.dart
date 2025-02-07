@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:ecommerce_app/Core/errors/failure.dart';
 import 'package:ecommerce_app/Core/utils/api_service.dart';
-import 'package:ecommerce_app/Features/Authenticate/data/repos/auth_repo.dart';
+import 'package:ecommerce_app/Features/Authenticate/data/repos/register_repo.dart';
 
 class RegisterRepoImplement implements RegisterRepo {
   final ApiService apiService;

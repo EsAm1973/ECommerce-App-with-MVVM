@@ -6,12 +6,4 @@ abstract class LoginRepo {
       {required String email, required String password});
 }
 
-abstract class RegisterRepo {
-  Future<Either<Failure, Map<String, dynamic>>> register({
-    required String name,
-    required String phone,
-    required String email,
-    required String password,
-    String? image,
-  });
-}
+
