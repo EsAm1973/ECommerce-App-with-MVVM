@@ -21,7 +21,15 @@ class LoginRepoImplement implements LoginRepo {
     };
     try {
       final response = await apiService.post('login', body, headers: headers);
-      return right(response);
+      if (response['status'] == false) {
+        return left(
+          ServerFailure(
+            errorMessage: response['message'],
+          ),
+        );
+      } else {
+        return right(response);
+      }
     } on Exception catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));

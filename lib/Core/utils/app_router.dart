@@ -5,6 +5,7 @@ import 'package:ecommerce_app/Features/Authenticate/presentation/manager/LoginAu
 import 'package:ecommerce_app/Features/Authenticate/presentation/manager/RegisterAuthCubit/register_cubit.dart';
 import 'package:ecommerce_app/Features/Authenticate/presentation/views/login_view.dart';
 import 'package:ecommerce_app/Features/Authenticate/presentation/views/signup_view.dart';
+import 'package:ecommerce_app/Features/home/presentation/views/home_view.dart';
 import 'package:ecommerce_app/Features/splash/presentation/views/splash_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -13,6 +14,7 @@ abstract class AppRouter {
   static const String kSplashView = '/';
   static const String kLoginView = '/login_view';
   static const String kSignupView = '/signup_view';
+  static const String kHomeView = '/home_view';
 
   static final router = GoRouter(routes: [
     GoRoute(
@@ -34,6 +36,10 @@ abstract class AppRouter {
             RegisterCubit(RegisterRepoImplement(apiService: ApiService())),
         child: const SignupView(),
       ),
+    ),
+    GoRoute(
+      path: kHomeView,
+      builder: (context, state) => const HomeView(),
     ),
   ]);
 }
