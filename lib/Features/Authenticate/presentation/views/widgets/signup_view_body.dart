@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/Features/Authenticate/presentation/views/widgets/login&sign_start_widget.dart';
+import 'package:ecommerce_app/Core/utils/styles.dart';
 import 'package:ecommerce_app/Features/Authenticate/presentation/views/widgets/signup_button.dart';
 import 'package:ecommerce_app/Features/Authenticate/presentation/views/widgets/signup_confirmpass_textfeild.dart';
 import 'package:ecommerce_app/Features/Authenticate/presentation/views/widgets/signup_email_textfeild.dart';
@@ -26,12 +26,24 @@ class SignupViewBody extends StatelessWidget {
           key: formKey,
           child: Column(
             children: [
-              const Center(
-                child: LoginAndSignScreenStartWidget(
-                  title: 'Sign Up For Free',
-                  subtitle: 'Join us for less than 1 minute, with no cost',
-                ),
-              ),
+              Center(
+                  child: Column(
+                children: [
+                  const Text(
+                    'Sign Up For Free',
+                    style: Styles.textStyle30,
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    'Join us for less than 1 minute, with no cost',
+                    style: Styles.textStyle16.copyWith(
+                      fontWeight: FontWeight.normal,
+                    ),
+                  ),
+                ],
+              )),
               const SizedBox(
                 height: 40,
               ),
@@ -70,7 +82,7 @@ class SignupViewBody extends StatelessWidget {
                 onPressed: () => signUp(context),
               ),
               const SizedBox(
-                height: 40,
+                height: 20,
               ),
               const SignUpMoveToLogin(),
               const SizedBox(
@@ -97,12 +109,11 @@ class SignupViewBody extends StatelessWidget {
         print('Email: $email');
         print('Password: $password');
 
-        // TODO: Implement your sign-up logic here (e.g., API call, Firebase Auth, etc.)
-
+        
         // Show success message or navigate to the next screen
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Sign-up successful!')),
-        );
+        // ScaffoldMessenger.of(context).showSnackBar(
+        //   const SnackBar(content: Text('Sign-up successful!')),
+        // );
 
         // Example: Navigate to the home screen after successful sign-up
         // Navigator.pushReplacement(
@@ -111,15 +122,15 @@ class SignupViewBody extends StatelessWidget {
         // );
       } else {
         // Passwords do not match
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Passwords do not match!')),
-        );
+        // ScaffoldMessenger.of(context).showSnackBar(
+        //   const SnackBar(content: Text('Passwords do not match!')),
+        // );
       }
     } else {
       // Form is invalid
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please fix the errors in the form.')),
-      );
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   const SnackBar(content: Text('Please fix the errors in the form.')),
+      // );
     }
   }
 }

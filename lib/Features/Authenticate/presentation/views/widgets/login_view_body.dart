@@ -3,7 +3,7 @@ import 'package:ecommerce_app/Features/Authenticate/presentation/views/widgets/l
 import 'package:ecommerce_app/Features/Authenticate/presentation/views/widgets/login_password_textfeild.dart';
 import 'package:ecommerce_app/Features/Authenticate/presentation/views/widgets/login_signp&forgetpassword.dart';
 import 'package:ecommerce_app/Features/Authenticate/presentation/views/widgets/login_socialmedia_row.dart';
-import 'package:ecommerce_app/Features/Authenticate/presentation/views/widgets/login&sign_start_widget.dart';
+import 'package:ecommerce_app/Features/Authenticate/presentation/views/widgets/login_start_widget.dart';
 import 'package:flutter/material.dart';
 
 class LoginViewBody extends StatelessWidget {
@@ -21,7 +21,7 @@ class LoginViewBody extends StatelessWidget {
           child: Column(
             children: [
               const Center(
-                  child: LoginAndSignScreenStartWidget(
+                  child: LoginScreenStartWidget(
                 title: 'Let\'s Sign In',
                 subtitle: 'Find All Products You Need Here',
               )),
@@ -74,9 +74,9 @@ class LoginViewBody extends StatelessWidget {
       print('Password: $password');
 
       // Show success message or navigate to the next screen
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Login successful!')),
-      );
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   const SnackBar(content: Text('Login successful!')),
+      // );
 
       // Example: Navigate to the home screen after successful login
       // Navigator.pushReplacement(
@@ -85,9 +85,9 @@ class LoginViewBody extends StatelessWidget {
       // );
     } else {
       // Form is invalid
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please fix the errors in the form.')),
-      );
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   const SnackBar(content: Text('Please fix the errors in the form.')),
+      // );
     }
   }
 }

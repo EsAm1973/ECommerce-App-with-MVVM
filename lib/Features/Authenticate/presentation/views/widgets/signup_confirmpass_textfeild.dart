@@ -16,6 +16,13 @@ class SignUpConfirmationPass extends StatefulWidget {
 class _SignUpConfirmationPassState extends State<SignUpConfirmationPass> {
   bool _obscureConfirmPassword = true;
   @override
+  void dispose() {
+    super.dispose();
+    widget.passwordConfirmController.dispose();
+    widget.passwordController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text(

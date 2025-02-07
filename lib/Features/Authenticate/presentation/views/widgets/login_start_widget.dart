@@ -2,8 +2,8 @@ import 'package:ecommerce_app/Core/utils/assets.dart';
 import 'package:ecommerce_app/Core/utils/styles.dart';
 import 'package:flutter/material.dart';
 
-class LoginAndSignScreenStartWidget extends StatelessWidget {
-  const LoginAndSignScreenStartWidget(
+class LoginScreenStartWidget extends StatelessWidget {
+  const LoginScreenStartWidget(
       {super.key, required this.title, required this.subtitle});
   final String title;
   final String subtitle;

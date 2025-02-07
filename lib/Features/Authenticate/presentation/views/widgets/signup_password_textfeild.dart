@@ -14,6 +14,12 @@ class SignUpPasswordTextFeild extends StatefulWidget {
 class _SignUpPasswordTextFeildState extends State<SignUpPasswordTextFeild> {
   bool _obscurePassword = true;
   @override
+  void dispose() {
+    super.dispose();
+    widget.passwordController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
