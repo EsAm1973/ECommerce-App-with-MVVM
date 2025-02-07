@@ -18,4 +18,25 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthSuccess(user: User.fromJson(r)));
     });
   }
+
+  Future<void> register({
+    required String name,
+    required String phone,
+    required String email,
+    required String password,
+    String? image,
+  }) async {
+    emit(AuthLoading());
+    final result = await registerRepo.register(
+        name: name,
+        phone: phone,
+        email: email,
+        password: password,
+        image: image);
+    result
+        .fold((failure) => emit(AuthError(errorMessage: failure.errorMessage)),
+            (user) {
+      emit(AuthSuccess(user: User.fromJson(user)));
+    });
+  }
 }
