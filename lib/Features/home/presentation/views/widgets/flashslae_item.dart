@@ -6,8 +6,8 @@ class FlashSaleListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 170,
+    return Container(
+    
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
