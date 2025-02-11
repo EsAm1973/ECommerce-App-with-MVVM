@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/Features/home/presentation/views/widgets/custom_appbar.dart';
+import 'package:ecommerce_app/Features/home/presentation/views/widgets/search_textfeild.dart';
 import 'package:flutter/material.dart';
 
 class HomeViewBody extends StatelessWidget {
@@ -11,9 +12,12 @@ class HomeViewBody extends StatelessWidget {
       child: Column(
         children: [
           CustomAppBar(),
+          SizedBox(
+            height: 20,
+          ),
+          SearchTextFeild(),
         ],
       ),
     );
   }
 }
-
