@@ -16,7 +16,7 @@ class _TopBarAndPhotosState extends State<TopBarAndPhotos> {
     return Stack(
       children: [
         SizedBox(
-          height: MediaQuery.of(context).size.height * 0.55,
+          height: double.infinity,
           child: PageView.builder(
             controller: pageController,
             onPageChanged: (index) {
@@ -27,7 +27,7 @@ class _TopBarAndPhotosState extends State<TopBarAndPhotos> {
             itemCount: 3, // Replace with actual number of product images
             itemBuilder: (context, index) {
               return Container(
-                padding: const EdgeInsets.all(30),
+                padding: const EdgeInsets.all(35),
                 color: Colors.grey.shade200,
                 child: Image.asset(
                   'images/assets/producttest.png',
