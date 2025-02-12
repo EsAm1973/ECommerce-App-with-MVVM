@@ -1,13 +1,18 @@
+import 'package:ecommerce_app/Core/utils/app_router.dart';
 import 'package:ecommerce_app/Core/utils/styles.dart';
 import 'package:ecommerce_app/Features/home/data/models/productModel.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class FlashSaleListItem extends StatelessWidget {
   const FlashSaleListItem({super.key, required this.product});
   final Product product;
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return GestureDetector(
+      onTap: () {
+        GoRouter.of(context).push(AppRouter.kDetailsView, extra: product);
+      },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

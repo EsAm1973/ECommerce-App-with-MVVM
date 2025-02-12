@@ -6,6 +6,7 @@ import 'package:ecommerce_app/Features/Authenticate/presentation/manager/LoginAu
 import 'package:ecommerce_app/Features/Authenticate/presentation/manager/RegisterAuthCubit/register_cubit.dart';
 import 'package:ecommerce_app/Features/Authenticate/presentation/views/login_view.dart';
 import 'package:ecommerce_app/Features/Authenticate/presentation/views/signup_view.dart';
+import 'package:ecommerce_app/Features/home/data/models/productModel.dart';
 import 'package:ecommerce_app/Features/home/data/repos/fetch_prodrepo_impl.dart';
 import 'package:ecommerce_app/Features/home/presentation/manager/FetchProducts/product_cubit.dart';
 import 'package:ecommerce_app/Features/home/presentation/views/details_view.dart';
@@ -15,7 +16,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 abstract class AppRouter {
- // static const String kSplashView = '/';
+  // static const String kSplashView = '/';
   static const String kLoginView = '/login_view';
   static const String kSignupView = '/signup_view';
   static const String kHomeView = '/';
@@ -53,7 +54,9 @@ abstract class AppRouter {
     ),
     GoRoute(
       path: kDetailsView,
-      builder: (context, state) => const DetailsView(),
+      builder: (context, state) => DetailsView(
+        product: state.extra as Product,
+      ),
     ),
   ]);
 }

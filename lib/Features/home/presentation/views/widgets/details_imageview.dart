@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class TopBarAndPhotos extends StatefulWidget {
-  const TopBarAndPhotos({super.key});
-
+  const TopBarAndPhotos({super.key, required this.productImages});
+  final List<String> productImages;
   @override
   State<TopBarAndPhotos> createState() => _TopBarAndPhotosState();
 }
@@ -24,13 +24,14 @@ class _TopBarAndPhotosState extends State<TopBarAndPhotos> {
                 _currentPage = index;
               });
             },
-            itemCount: 3, // Replace with actual number of product images
+            itemCount: widget.productImages
+                .length, // Replace with actual number of product images
             itemBuilder: (context, index) {
               return Container(
-                padding: const EdgeInsets.all(35),
+                padding: const EdgeInsets.all(70),
                 color: Colors.grey.shade200,
-                child: Image.asset(
-                  'images/assets/producttest.png',
+                child: Image.network(
+                  widget.productImages[index],
                   fit: BoxFit.contain,
                 ),
               );
@@ -83,7 +84,7 @@ class _TopBarAndPhotosState extends State<TopBarAndPhotos> {
           right: 0,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(3, (index) {
+            children: List.generate(widget.productImages.length, (index) {
               return Container(
                 width: 8,
                 height: 8,

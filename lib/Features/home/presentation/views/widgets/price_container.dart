@@ -2,8 +2,8 @@ import 'package:ecommerce_app/Core/utils/styles.dart';
 import 'package:flutter/material.dart';
 
 class PriceContainer extends StatelessWidget {
-  const PriceContainer({super.key});
-
+  const PriceContainer({super.key, required this.price});
+  final double price;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,7 +16,7 @@ class PriceContainer extends StatelessWidget {
       child: Row(
         children: [
           Text(
-            '\$399.00',
+            price.toString(),
             style: Styles.textStyle16.copyWith(
               fontWeight: FontWeight.w600,
             ),
