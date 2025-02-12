@@ -39,7 +39,7 @@ class CustomIconTextButton extends StatelessWidget {
         children: [
           Text(text, style: Styles.textStyle16.copyWith(color: Colors.white)),
           const SizedBox(width: 8),
-          Icon(icon, color: iconColor),
+          Icon(icon, color: iconColor,size: 20,),
         ],
       ),
     );
