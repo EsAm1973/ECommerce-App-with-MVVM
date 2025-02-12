@@ -1,13 +1,13 @@
 import 'package:ecommerce_app/Core/utils/styles.dart';
+import 'package:ecommerce_app/Features/home/data/models/productModel.dart';
 import 'package:flutter/material.dart';
 
 class FlashSaleListItem extends StatelessWidget {
-  const FlashSaleListItem({super.key});
-
+  const FlashSaleListItem({super.key, required this.product});
+  final Product product;
   @override
   Widget build(BuildContext context) {
     return Container(
-    
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -20,8 +20,8 @@ class FlashSaleListItem extends StatelessWidget {
             ),
             child: Padding(
               padding: const EdgeInsets.all(10),
-              child: Image.asset(
-                'images/assets/producttest.png',
+              child: Image.network(
+                product.image,
                 fit: BoxFit.contain,
               ),
             ),
@@ -32,7 +32,7 @@ class FlashSaleListItem extends StatelessWidget {
           Text(
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
-            'Apple iPhone 12 Pro Max 256GB 6 GB RAM, Pacific Blue',
+            product.name,
             style: Styles.textStyle14.copyWith(
               fontWeight: FontWeight.w600,
             ),
@@ -43,7 +43,7 @@ class FlashSaleListItem extends StatelessWidget {
           Row(
             children: [
               Text(
-                '\$633.00',
+                product.price.toString(),
                 style: Styles.textStyle20.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
@@ -52,7 +52,7 @@ class FlashSaleListItem extends StatelessWidget {
                 width: 15,
               ),
               Text(
-                '\$933.00',
+                product.oldPrice.toString(),
                 style: Styles.textStyle14.copyWith(
                   decoration: TextDecoration.lineThrough,
                 ),

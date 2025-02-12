@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:ecommerce_app/Core/utils/api_service.dart';
 import 'package:ecommerce_app/Features/Authenticate/data/repos/login_repo_implement.dart';
 import 'package:ecommerce_app/Features/Authenticate/data/repos/register_repo_implement.dart';
@@ -5,6 +6,8 @@ import 'package:ecommerce_app/Features/Authenticate/presentation/manager/LoginAu
 import 'package:ecommerce_app/Features/Authenticate/presentation/manager/RegisterAuthCubit/register_cubit.dart';
 import 'package:ecommerce_app/Features/Authenticate/presentation/views/login_view.dart';
 import 'package:ecommerce_app/Features/Authenticate/presentation/views/signup_view.dart';
+import 'package:ecommerce_app/Features/home/data/repos/fetch_prodrepo_impl.dart';
+import 'package:ecommerce_app/Features/home/presentation/manager/FetchProducts/product_cubit.dart';
 import 'package:ecommerce_app/Features/home/presentation/views/details_view.dart';
 import 'package:ecommerce_app/Features/home/presentation/views/home_view.dart';
 import 'package:ecommerce_app/Features/splash/presentation/views/splash_view.dart';
@@ -12,17 +15,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 abstract class AppRouter {
-  static const String kSplashView = '/';
+ // static const String kSplashView = '/';
   static const String kLoginView = '/login_view';
   static const String kSignupView = '/signup_view';
-  static const String kHomeView = '/home_view';
+  static const String kHomeView = '/';
   static const String kDetailsView = '/details_view';
 
   static final router = GoRouter(routes: [
-    GoRoute(
-      path: kSplashView,
-      builder: (context, state) => const SplashView(),
-    ),
+    // GoRoute(
+    //   path: kSplashView,
+    //   builder: (context, state) => const SplashView(),
+    // ),
     GoRoute(
       path: kLoginView,
       builder: (context, state) => BlocProvider(
@@ -41,7 +44,12 @@ abstract class AppRouter {
     ),
     GoRoute(
       path: kHomeView,
-      builder: (context, state) => const HomeView(),
+      builder: (context, state) => BlocProvider(
+        create: (context) =>
+            ProductCubit(FetchProductRepoImpl(ApiService(dio: Dio())))
+              ..fetchProducts(),
+        child: const HomeView(),
+      ),
     ),
     GoRoute(
       path: kDetailsView,

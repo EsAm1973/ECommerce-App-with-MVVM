@@ -7,45 +7,86 @@ abstract class Failure {
 
 class ServerFailure extends Failure {
   ServerFailure({required super.errorMessage});
+
   factory ServerFailure.fromDioException(DioException dioException) {
     switch (dioException.type) {
       case DioExceptionType.connectionTimeout:
-        return ServerFailure(errorMessage: 'Connection Time Out with Server');
+        return ServerFailure(errorMessage: 'Connection timeout with server');
       case DioExceptionType.sendTimeout:
-        return ServerFailure(errorMessage: 'Send Time Out with Server');
-
+        return ServerFailure(errorMessage: 'Send timeout with server');
       case DioExceptionType.receiveTimeout:
-        return ServerFailure(errorMessage: 'Recieve Time Out with Server');
+        return ServerFailure(errorMessage: 'Receive timeout with server');
       case DioExceptionType.badCertificate:
+        return ServerFailure(errorMessage: 'Invalid security certificate');
       case DioExceptionType.badResponse:
-        return ServerFailure.fromResponse(
-            dioException.response!.statusCode, dioException.response!.data);
+        return _handleBadResponse(dioException.response);
       case DioExceptionType.cancel:
-        return ServerFailure(errorMessage: 'Request Canceled');
+        return ServerFailure(errorMessage: 'Request canceled');
       case DioExceptionType.connectionError:
+        return ServerFailure(errorMessage: 'Connection error - check network');
       case DioExceptionType.unknown:
-        if (dioException.message!.contains('SocketException')) {
-          return ServerFailure(errorMessage: 'No Internet Connection');
-        } else {
-          return ServerFailure(errorMessage: 'Unexpected Error, Try Again');
-        }
+        return _handleUnknownError(dioException);
       default:
-        return ServerFailure(errorMessage: 'Unexpected Error, Try Again');
+        return ServerFailure(errorMessage: 'Unexpected error occurred');
+    }
+  }
+
+  static ServerFailure _handleUnknownError(DioException dioException) {
+    final message = dioException.message ?? '';
+    if (message.contains('SocketException')) {
+      return ServerFailure(errorMessage: 'No internet connection');
+    }
+    return ServerFailure(
+      errorMessage: message.isNotEmpty
+          ? message
+          : 'Unknown error occurred', // Fixed typo here
+    );
+  }
+
+  static ServerFailure _handleBadResponse(Response? response) {
+    if (response == null) {
+      return ServerFailure(errorMessage: 'Invalid server response');
+    }
+
+    try {
+      return ServerFailure.fromResponse(
+        response.statusCode,
+        response.data,
+      );
+    } catch (e) {
+      return ServerFailure(errorMessage: 'Error processing server response');
     }
   }
 
   factory ServerFailure.fromResponse(int? statusCode, dynamic response) {
-    if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
-      //Access the error message in error map in api
-      return ServerFailure(errorMessage: response['message']);
-    } else if (statusCode == 404) {
-      return ServerFailure(
-          errorMessage: 'Your Requested Content Not Found Try Again Later');
-    } else if (statusCode == 500) {
-      return ServerFailure(
-          errorMessage: 'Internal Server Error Try Again Later');
-    } else {
-      return ServerFailure(errorMessage: response['message']);
+    final defaultMessage = 'Something went wrong. Please try again.';
+
+    // Handle null or unexpected response format
+    if (response is! Map<String, dynamic>) {
+      return ServerFailure(errorMessage: defaultMessage);
+    }
+
+    final message = response['message']?.toString() ?? defaultMessage;
+
+    switch (statusCode) {
+      case 400:
+        return ServerFailure(errorMessage: message);
+      case 401:
+        return ServerFailure(errorMessage: 'Authentication required');
+      case 403:
+        return ServerFailure(errorMessage: 'Access forbidden');
+      case 404:
+        return ServerFailure(
+          errorMessage: 'Requested content not found',
+        );
+      case 500:
+        return ServerFailure(
+          errorMessage: 'Internal server error. Try again later.',
+        );
+      default:
+        return ServerFailure(
+          errorMessage: 'Unexpected error (code: $statusCode)',
+        );
     }
   }
 }
