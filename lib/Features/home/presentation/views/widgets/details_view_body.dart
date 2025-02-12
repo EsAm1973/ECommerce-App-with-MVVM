@@ -1,5 +1,4 @@
 import 'package:ecommerce_app/Core/utils/styles.dart';
-import 'package:ecommerce_app/Core/widgets/custom_button.dart';
 import 'package:ecommerce_app/Features/home/presentation/views/widgets/add_cart_button.dart';
 import 'package:ecommerce_app/Features/home/presentation/views/widgets/description_product.dart';
 import 'package:ecommerce_app/Features/home/presentation/views/widgets/details_imageview.dart';
@@ -7,8 +6,6 @@ import 'package:ecommerce_app/Features/home/presentation/views/widgets/price_con
 import 'package:ecommerce_app/Features/home/presentation/views/widgets/rating_part.dart';
 import 'package:ecommerce_app/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:readmore/readmore.dart';
 
 class DetailsViewBody extends StatelessWidget {
   const DetailsViewBody({super.key});
@@ -45,12 +42,13 @@ class DetailsViewBody extends StatelessWidget {
                   height: 20,
                 ),
                 DescriptionProduct(
-                  descriptionProduct: description,
+                  descriptionProduct: descriptionTest,
                 ),
                 const SizedBox(
                   height: 20,
                 ),
-                AddCartButton(),
+                const AddCartButton(),
+                const SizedBox(height: 5,),
               ],
             ),
           )
