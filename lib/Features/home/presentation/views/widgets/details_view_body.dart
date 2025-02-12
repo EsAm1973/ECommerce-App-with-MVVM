@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/Core/utils/styles.dart';
 import 'package:ecommerce_app/Core/widgets/custom_button.dart';
+import 'package:ecommerce_app/Features/home/presentation/views/widgets/add_cart_button.dart';
 import 'package:ecommerce_app/Features/home/presentation/views/widgets/description_product.dart';
 import 'package:ecommerce_app/Features/home/presentation/views/widgets/details_imageview.dart';
 import 'package:ecommerce_app/Features/home/presentation/views/widgets/price_container.dart';
@@ -55,20 +56,6 @@ class DetailsViewBody extends StatelessWidget {
           )
         ],
       ),
-    );
-  }
-}
-
-
-class AddCartButton extends StatelessWidget {
-  const AddCartButton({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return CustomIconTextButton(
-      onPressed: () {},
-      text: 'Add to Cart',
-      icon: FontAwesomeIcons.cartShopping,
     );
   }
 }
