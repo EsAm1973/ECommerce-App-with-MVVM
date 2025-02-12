@@ -3,5 +3,5 @@ import 'package:ecommerce_app/Core/errors/failure.dart';
 import 'package:ecommerce_app/Features/home/data/models/productModel.dart';
 
 abstract class FetchProductRepo {
-  Either<Failure, List<Product>> fetchProducts();
+  Future<Either<Failure, List<Product>>> fetchProducts();
 }
