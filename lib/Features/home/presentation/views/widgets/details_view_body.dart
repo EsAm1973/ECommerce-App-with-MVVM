@@ -1,5 +1,5 @@
 import 'package:ecommerce_app/Core/utils/styles.dart';
-import 'package:ecommerce_app/Features/home/data/models/productModel.dart';
+import 'package:ecommerce_app/Core/models/productModel.dart';
 import 'package:ecommerce_app/Features/home/presentation/views/widgets/add_cart_button.dart';
 import 'package:ecommerce_app/Features/home/presentation/views/widgets/description_product.dart';
 import 'package:ecommerce_app/Features/home/presentation/views/widgets/details_imageview.dart';

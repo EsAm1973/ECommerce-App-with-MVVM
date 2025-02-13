@@ -1,6 +1,6 @@
 import 'package:ecommerce_app/Core/utils/app_router.dart';
 import 'package:ecommerce_app/Core/utils/styles.dart';
-import 'package:ecommerce_app/Features/home/data/models/productModel.dart';
+import 'package:ecommerce_app/Core/models/productModel.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

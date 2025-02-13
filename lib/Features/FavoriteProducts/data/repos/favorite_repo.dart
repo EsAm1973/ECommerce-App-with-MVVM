@@ -1,5 +1,5 @@
 
-import 'package:ecommerce_app/Features/home/data/models/productModel.dart';
+import 'package:ecommerce_app/Core/models/productModel.dart';
 
 abstract class IFavoriteRepository {
   Future<void> addFavorite(Product product, int userId);

@@ -7,7 +7,7 @@ import 'package:ecommerce_app/Features/Authenticate/presentation/manager/Registe
 import 'package:ecommerce_app/Features/Authenticate/presentation/views/login_view.dart';
 import 'package:ecommerce_app/Features/Authenticate/presentation/views/signup_view.dart';
 import 'package:ecommerce_app/Features/FavoriteProducts/presentation/views/favorite_view.dart';
-import 'package:ecommerce_app/Features/home/data/models/productModel.dart';
+import 'package:ecommerce_app/Core/models/productModel.dart';
 import 'package:ecommerce_app/Features/home/data/repos/fetch_prodrepo_impl.dart';
 import 'package:ecommerce_app/Features/home/presentation/manager/FetchProducts/product_cubit.dart';
 import 'package:ecommerce_app/Features/home/presentation/views/details_view.dart';

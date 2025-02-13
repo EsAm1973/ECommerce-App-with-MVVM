@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:ecommerce_app/Core/errors/failure.dart';
 import 'package:ecommerce_app/Core/utils/api_service.dart';
-import 'package:ecommerce_app/Features/home/data/models/productModel.dart';
+import 'package:ecommerce_app/Core/models/productModel.dart';
 import 'package:ecommerce_app/Features/home/data/repos/fetch_prod_repo.dart';
 
 class FetchProductRepoImpl implements FetchProductRepo {
