@@ -6,6 +6,7 @@ import 'package:ecommerce_app/Features/Authenticate/presentation/manager/LoginAu
 import 'package:ecommerce_app/Features/Authenticate/presentation/manager/RegisterAuthCubit/register_cubit.dart';
 import 'package:ecommerce_app/Features/Authenticate/presentation/views/login_view.dart';
 import 'package:ecommerce_app/Features/Authenticate/presentation/views/signup_view.dart';
+import 'package:ecommerce_app/Features/FavoriteProducts/presentation/views/favorite_view.dart';
 import 'package:ecommerce_app/Features/home/data/models/productModel.dart';
 import 'package:ecommerce_app/Features/home/data/repos/fetch_prodrepo_impl.dart';
 import 'package:ecommerce_app/Features/home/presentation/manager/FetchProducts/product_cubit.dart';
@@ -16,11 +17,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 abstract class AppRouter {
-  // static const String kSplashView = '/';
+  //static const String kSplashView = '/';
   static const String kLoginView = '/login_view';
   static const String kSignupView = '/signup_view';
-  static const String kHomeView = '/';
+  static const String kHomeView = '/home_view';
   static const String kDetailsView = '/details_view';
+  static const String kFavoritesView = '/';
 
   static final router = GoRouter(routes: [
     // GoRoute(
@@ -57,6 +59,10 @@ abstract class AppRouter {
       builder: (context, state) => DetailsView(
         product: state.extra as Product,
       ),
+    ),
+    GoRoute(
+      path: kFavoritesView,
+      builder: (context, state) => const FavoriteView(),
     ),
   ]);
 }
