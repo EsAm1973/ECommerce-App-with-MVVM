@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:ecommerce_app/Core/utils/api_service.dart';
+import 'package:ecommerce_app/Core/widgets/navigation_bar.dart';
 import 'package:ecommerce_app/Features/Authenticate/data/repos/login_repo_implement.dart';
 import 'package:ecommerce_app/Features/Authenticate/data/repos/register_repo_implement.dart';
 import 'package:ecommerce_app/Features/Authenticate/presentation/manager/LoginAuthCubit/login_auth_cubit.dart';
@@ -46,23 +47,59 @@ abstract class AppRouter {
       ),
     ),
     GoRoute(
-      path: kHomeView,
-      builder: (context, state) => BlocProvider(
-        create: (context) =>
-            ProductCubit(FetchProductRepoImpl(ApiService(dio: Dio())))
-              ..fetchProducts(),
-        child: const HomeView(),
-      ),
-    ),
-    GoRoute(
       path: kDetailsView,
       builder: (context, state) => DetailsView(
         product: state.extra as Product,
       ),
     ),
-    GoRoute(
-      path: kFavoritesView,
-      builder: (context, state) => const FavoriteView(),
-    ),
+    StatefulShellRoute.indexedStack(
+        builder: (context, state, navigationShell) {
+          return ScaffoldWithNavBar(navigationShell: navigationShell);
+        },
+        branches: [
+          // Home Branch
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: kHomeView,
+                builder: (context, state) => BlocProvider(
+                  create: (context) => ProductCubit(
+                    FetchProductRepoImpl(ApiService(dio: Dio())),
+                  )..fetchProducts(),
+                  child: const HomeView(),
+                ),
+              ),
+            ],
+          ),
+          // Cart Branch
+          // StatefulShellBranch(
+          //   routes: [
+          //     GoRoute(
+          //       path: kCartView,
+          //       builder: (context, state) =>
+          //           const CartView(), // Create this widget
+          //     ),
+          //   ],
+          // ),
+          // Favorites Branch
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: kFavoritesView,
+                builder: (context, state) => const FavoriteView(),
+              ),
+            ],
+          ),
+          // Profile Branch
+          // StatefulShellBranch(
+          //   routes: [
+          //     GoRoute(
+          //       path: kProfileView,
+          //       builder: (context, state) =>
+          //           const ProfileView(), // Create this widget
+          //     ),
+          //   ],
+          // ),
+        ]),
   ]);
 }
