@@ -1,6 +1,6 @@
 // favorite_repository_impl.dart
 import 'dart:convert';
-import 'package:ecommerce_app/Core/database/favorite_database.dart';
+import 'package:ecommerce_app/Core/data/database/favorite_database.dart';
 import 'package:ecommerce_app/Features/FavoriteProducts/data/repos/favorite_repo.dart';
 import 'package:ecommerce_app/Features/home/data/models/productModel.dart';
 import 'package:sqflite/sqflite.dart';

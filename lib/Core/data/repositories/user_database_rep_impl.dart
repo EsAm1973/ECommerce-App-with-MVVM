@@ -1,7 +1,7 @@
 // user_repository_impl.dart
-import 'package:ecommerce_app/Core/database/user_database.dart';
+import 'package:ecommerce_app/Core/data/database/user_database.dart';
 import 'package:ecommerce_app/Core/models/user_model.dart';
-import 'package:ecommerce_app/Core/repositories/user_database_repo.dart';
+import 'package:ecommerce_app/Core/data/repositories/user_database_repo.dart';
 import 'package:sqflite/sqflite.dart';
 
 class UserRepositoryImpl implements IUserRepository {
