@@ -1,4 +1,3 @@
-// favorite_repository_impl.dart
 import 'dart:convert';
 import 'package:ecommerce_app/Core/data/database/favorite_database.dart';
 import 'package:ecommerce_app/Features/FavoriteProducts/data/repos/favorite_repo.dart';
@@ -58,9 +57,20 @@ class FavoriteRepositoryImpl implements IFavoriteRepository {
         name: map['name'],
         description: map['description'],
         images: List<String>.from(jsonDecode(map['images'])),
-        inFavorites: true, // Since it's in the favorite table.
-        inCart: false, // This value can be set as needed.
+        inFavorites: true, // Since it is stored as a favorite.
+        inCart: false, // Modify as needed.
       );
     }).toList();
+  }
+
+  @override
+  Future<bool> isFavorite(int productId, int userId) async {
+    final db = await favoriteDatabase.database;
+    final List<Map<String, dynamic>> maps = await db.query(
+      'favorite',
+      where: 'productId = ? AND userId = ?',
+      whereArgs: [productId, userId],
+    );
+    return maps.isNotEmpty;
   }
 }
