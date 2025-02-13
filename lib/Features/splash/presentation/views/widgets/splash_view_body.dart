@@ -1,6 +1,9 @@
+import 'package:ecommerce_app/Core/data/UserCubit/user_cubit.dart';
 import 'package:ecommerce_app/Core/utils/app_router.dart';
 import 'package:ecommerce_app/Core/utils/assets.dart';
+import 'package:ecommerce_app/main.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class SplashViewBody extends StatefulWidget {
@@ -48,7 +51,14 @@ class _SplashViewBodyState extends State<SplashViewBody> {
         _opacirty = 1.0;
       });
       Future.delayed(const Duration(seconds: 2), () {
-        GoRouter.of(context).pushReplacement(AppRouter.kLoginView);
+        context.read<UserCubit>().loadUser().then((_) {
+          final state = context.read<UserCubit>().state;
+          if (state is UserLoaded) {
+            GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
+          } else {
+            GoRouter.of(context).pushReplacement(AppRouter.kLoginView);
+          }
+        });
       });
     });
   }

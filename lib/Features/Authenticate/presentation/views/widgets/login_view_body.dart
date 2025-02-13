@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/Core/data/UserCubit/user_cubit.dart';
 import 'package:ecommerce_app/Core/utils/app_router.dart';
 import 'package:ecommerce_app/Features/Authenticate/presentation/manager/LoginAuthCubit/login_auth_cubit.dart';
 import 'package:ecommerce_app/Features/Authenticate/presentation/views/widgets/login_button.dart';
@@ -20,6 +21,7 @@ class LoginViewBody extends StatelessWidget {
     return BlocListener<LoginAuthCubit, LoginAuthState>(
       listener: (context, state) {
         if (state is LoginAuthSuccess) {
+          context.read<UserCubit>().saveUser(state.user);
           GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
         } else if (state is LoginAuthError) {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -89,35 +91,4 @@ class LoginViewBody extends StatelessWidget {
       ),
     );
   }
-
-  // void login(BuildContext context) {
-  //   if (formKey.currentState!.validate()) {
-  //     // Form is valid, proceed with login logic
-  //     final String email = emailController.text;
-  //     final String password = passwordController.text;
-
-  //     // TODO: Implement your login logic here (e.g., API call, Firebase Auth, etc.)
-
-  //     // Example: Simulate a successful login
-  //     print('Email: $email');
-  //     print('Password: $password');
-
-  //     // Show success message or navigate to the next screen
-  //     // ScaffoldMessenger.of(context).showSnackBar(
-  //     //   const SnackBar(content: Text('Login successful!')),
-  //     // );
-
-  //     // Example: Navigate to the home screen after successful login
-  //     // Navigator.pushReplacement(
-  //     //   context,
-  //     //   MaterialPageRoute(builder: (context) => HomeScreen()),
-  //     // );
-  //   } else {
-  //     // Form is invalid
-  //     // ScaffoldMessenger.of(context).showSnackBar(
-  //     //   const SnackBar(content: Text('Please fix the errors in the form.')),
-  //     // );
-  //   }
-  // }
-
 }
