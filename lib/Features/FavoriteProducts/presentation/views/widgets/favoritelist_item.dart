@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_app/Core/data/UserCubit/user_cubit.dart';
 import 'package:ecommerce_app/Core/models/productModel.dart';
 import 'package:ecommerce_app/Core/utils/styles.dart';
@@ -23,10 +24,18 @@ class FavoriteListItem extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 color: Colors.grey.shade200,
-                image: DecorationImage(
-                  image: NetworkImage(product.image),
-                  fit: BoxFit.cover,
+              ),
+              child: CachedNetworkImage(
+                imageUrl: product.image,
+                errorWidget: (context, url, error) => const Icon(
+                  Icons.error,
                 ),
+                placeholder: (context, url) => const Center(
+                  child: CircularProgressIndicator(
+                    color: Colors.black,
+                  ),
+                ),
+                fit: BoxFit.contain,
               ),
             ),
             const SizedBox(width: 20),

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_app/Core/utils/app_router.dart';
 import 'package:ecommerce_app/Core/utils/styles.dart';
 import 'package:ecommerce_app/Core/models/productModel.dart';
@@ -25,8 +26,14 @@ class FlashSaleListItem extends StatelessWidget {
             ),
             child: Padding(
               padding: const EdgeInsets.all(10),
-              child: Image.network(
-                product.image,
+              child: CachedNetworkImage(
+                imageUrl: product.image,
+                errorWidget: (context, url, error) => const Icon(
+                  Icons.error,
+                ),
+                placeholder: (context, url) => const Center(
+                  child: CircularProgressIndicator(),
+                ),
                 fit: BoxFit.contain,
               ),
             ),

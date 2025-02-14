@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_app/Core/data/UserCubit/user_cubit.dart';
 import 'package:ecommerce_app/Core/models/productModel.dart';
 import 'package:ecommerce_app/Features/FavoriteProducts/presentation/manager/FavoriteCubit/favorite_cubit.dart';
@@ -41,8 +42,14 @@ class _TopBarAndPhotosState extends State<TopBarAndPhotos> {
               return Container(
                 padding: const EdgeInsets.all(70),
                 color: Colors.grey.shade200,
-                child: Image.network(
-                  widget.product.images[index],
+                child: CachedNetworkImage(
+                  imageUrl: widget.product.images[index],
+                  errorWidget: (context, url, error) => const Icon(
+                    Icons.error,
+                  ),
+                  placeholder: (context, url) => const Center(
+                    child: CircularProgressIndicator(),
+                  ),
                   fit: BoxFit.contain,
                 ),
               );

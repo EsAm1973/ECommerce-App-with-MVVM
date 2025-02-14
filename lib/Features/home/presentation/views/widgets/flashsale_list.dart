@@ -21,20 +21,28 @@ class FlashSaleList extends StatelessWidget {
                 childAspectRatio: 0.7),
             itemCount: state.products.length,
             itemBuilder: (context, index) {
-              return  FlashSaleListItem(product: state.products[index],);
+              return FlashSaleListItem(
+                product: state.products[index],
+              );
             },
           );
-        }else if(state is ProductLoading){
-          return const Center(
-            child: CircularProgressIndicator(),
+        } else if (state is ProductLoading) {
+          return const Expanded(
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
           );
-        } else if(state is ProductFailure) {
-          return Center(
-            child: Text(state.errorMessage),
+        } else if (state is ProductFailure) {
+          return Expanded(
+            child: Center(
+              child: Text(state.errorMessage),
+            ),
           );
-        }else{
-          return const Center(
-            child: Text('Something went wrong'),
+        } else {
+          return const Expanded(
+            child: Center(
+              child: Text('Something went wrong'),
+            ),
           );
         }
       },
