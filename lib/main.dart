@@ -1,13 +1,21 @@
 import 'package:ecommerce_app/Core/data/UserCubit/user_cubit.dart';
+import 'package:ecommerce_app/Core/data/database/favorite_database.dart';
 import 'package:ecommerce_app/Core/data/database/user_database.dart';
 import 'package:ecommerce_app/Core/data/repositories/user_database_rep_impl.dart';
 import 'package:ecommerce_app/Core/utils/app_router.dart';
+import 'package:ecommerce_app/Features/FavoriteProducts/data/repos/favorite_repo_impl.dart';
+import 'package:ecommerce_app/Features/FavoriteProducts/presentation/manager/FavoriteCubit/favorite_cubit.dart';
 import 'package:ecommerce_app/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(BlocProvider(
+    create: (context) => FavoriteCubit(
+        favoriteRepository:
+            FavoriteRepositoryImpl(favoriteDatabase: FavoriteDatabase())),
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {

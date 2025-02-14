@@ -28,7 +28,8 @@ class LoginRepoImplement implements LoginRepo {
           ),
         );
       } else {
-        return right(response);
+        final userData=response['data'];
+        return right(userData);
       }
     } on Exception catch (e) {
       if (e is DioException) {

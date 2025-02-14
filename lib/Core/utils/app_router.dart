@@ -71,16 +71,6 @@ abstract class AppRouter {
               ),
             ],
           ),
-          // Cart Branch
-          // StatefulShellBranch(
-          //   routes: [
-          //     GoRoute(
-          //       path: kCartView,
-          //       builder: (context, state) =>
-          //           const CartView(), // Create this widget
-          //     ),
-          //   ],
-          // ),
           // Favorites Branch
           StatefulShellBranch(
             routes: [
@@ -90,16 +80,6 @@ abstract class AppRouter {
               ),
             ],
           ),
-          // Profile Branch
-          // StatefulShellBranch(
-          //   routes: [
-          //     GoRoute(
-          //       path: kProfileView,
-          //       builder: (context, state) =>
-          //           const ProfileView(), // Create this widget
-          //     ),
-          //   ],
-          // ),
         ]),
   ]);
 }

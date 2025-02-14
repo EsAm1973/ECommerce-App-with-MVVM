@@ -4,7 +4,6 @@ import 'package:ecommerce_app/Features/home/presentation/views/widgets/custom_ap
 import 'package:ecommerce_app/Features/home/presentation/views/widgets/discount_banner.dart';
 import 'package:ecommerce_app/Features/home/presentation/views/widgets/flashsale_list.dart';
 import 'package:ecommerce_app/Features/home/presentation/views/widgets/flashsale_row.dart';
-import 'package:ecommerce_app/Features/home/presentation/views/widgets/flashslae_item.dart';
 import 'package:ecommerce_app/Features/home/presentation/views/widgets/search_textfeild.dart';
 import 'package:flutter/material.dart';
 
@@ -53,4 +52,3 @@ class HomeViewBody extends StatelessWidget {
     );
   }
 }
-

@@ -1,8 +1,12 @@
+import 'package:ecommerce_app/Core/data/UserCubit/user_cubit.dart';
+import 'package:ecommerce_app/Core/models/productModel.dart';
+import 'package:ecommerce_app/Features/FavoriteProducts/presentation/manager/FavoriteCubit/favorite_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TopBarAndPhotos extends StatefulWidget {
-  const TopBarAndPhotos({super.key, required this.productImages});
-  final List<String> productImages;
+  const TopBarAndPhotos({super.key, required this.product});
+  final Product product;
   @override
   State<TopBarAndPhotos> createState() => _TopBarAndPhotosState();
 }
@@ -10,7 +14,14 @@ class TopBarAndPhotos extends StatefulWidget {
 class _TopBarAndPhotosState extends State<TopBarAndPhotos> {
   final PageController pageController = PageController();
   int _currentPage = 0;
-  bool _isFavorited = false;
+  late int userId;
+  @override
+  void initState() {
+    super.initState();
+    userId = context.read<UserCubit>().currentUser!.id;
+    context.read<FavoriteCubit>().fetchFavorites(userId);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -24,14 +35,14 @@ class _TopBarAndPhotosState extends State<TopBarAndPhotos> {
                 _currentPage = index;
               });
             },
-            itemCount: widget.productImages
+            itemCount: widget.product.images
                 .length, // Replace with actual number of product images
             itemBuilder: (context, index) {
               return Container(
                 padding: const EdgeInsets.all(70),
                 color: Colors.grey.shade200,
                 child: Image.network(
-                  widget.productImages[index],
+                  widget.product.images[index],
                   fit: BoxFit.contain,
                 ),
               );
@@ -61,15 +72,26 @@ class _TopBarAndPhotosState extends State<TopBarAndPhotos> {
                   borderRadius: BorderRadius.circular(50),
                   color: Colors.white,
                 ),
-                child: IconButton(
-                  icon: Icon(
-                    _isFavorited ? Icons.favorite : Icons.favorite_border,
-                    color: Colors.black,
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      _isFavorited = !_isFavorited;
-                    });
+                child: BlocBuilder<FavoriteCubit, FavoriteState>(
+                  builder: (context, state) {
+                    final cubit = context.read<FavoriteCubit>();
+                    bool isFavorite = false;
+                    if (state is FavoriteLoaded) {
+                      isFavorite =
+                          state.favorites.any((m) => m.id == widget.product.id);
+                    }
+                    return IconButton(
+                      icon: Icon(
+                        isFavorite ? Icons.favorite : Icons.favorite_border,
+                        size: 30,
+                        color: isFavorite ? Colors.red : Colors.black,
+                      ),
+                      onPressed: () {
+                        context
+                            .read<FavoriteCubit>()
+                            .toggleFavorite(widget.product, userId);
+                      },
+                    );
                   },
                 ),
               ),
@@ -84,7 +106,7 @@ class _TopBarAndPhotosState extends State<TopBarAndPhotos> {
           right: 0,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(widget.productImages.length, (index) {
+            children: List.generate(widget.product.images.length, (index) {
               return Container(
                 width: 8,
                 height: 8,

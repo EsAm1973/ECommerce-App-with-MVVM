@@ -41,8 +41,8 @@ class FavoriteCubit extends Cubit<FavoriteState> {
   Future<void> addFavorite(Product product, int userId) async {
     try {
       await favoriteRepository.addFavorite(product, userId);
-      // Refresh favorites after addition.
-      fetchFavorites(userId);
+      final products = await favoriteRepository.getFavorites(userId);
+      emit(FavoriteLoaded(products));
     } catch (e) {
       emit(FavoriteError(e.toString()));
     }
@@ -51,8 +51,8 @@ class FavoriteCubit extends Cubit<FavoriteState> {
   Future<void> removeFavorite(int productId, int userId) async {
     try {
       await favoriteRepository.removeFavorite(productId, userId);
-      // Refresh favorites after removal.
-      fetchFavorites(userId);
+      final products = await favoriteRepository.getFavorites(userId);
+      emit(FavoriteLoaded(products));
     } catch (e) {
       emit(FavoriteError(e.toString()));
     }

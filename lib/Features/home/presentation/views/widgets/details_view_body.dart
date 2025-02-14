@@ -5,7 +5,6 @@ import 'package:ecommerce_app/Features/home/presentation/views/widgets/descripti
 import 'package:ecommerce_app/Features/home/presentation/views/widgets/details_imageview.dart';
 import 'package:ecommerce_app/Features/home/presentation/views/widgets/price_container.dart';
 import 'package:ecommerce_app/Features/home/presentation/views/widgets/rating_part.dart';
-import 'package:ecommerce_app/constants.dart';
 import 'package:flutter/material.dart';
 
 class DetailsViewBody extends StatelessWidget {
@@ -18,7 +17,7 @@ class DetailsViewBody extends StatelessWidget {
         children: [
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.50,
-            child:  TopBarAndPhotos(productImages: product.images,),
+            child:  TopBarAndPhotos(product: product,),
           ),
           Padding(
             padding: const EdgeInsets.all(20),

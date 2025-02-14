@@ -10,6 +10,13 @@ class UserCubit extends Cubit<UserState> {
 
   UserCubit({required this.userRepository}) : super(UserInitial());
 
+  User? get currentUser {
+    if (state is UserLoaded) {
+      return (state as UserLoaded).user;
+    }
+    return null;
+  }
+
   Future<void> loadUser() async {
     try {
       emit(UserLoading());

@@ -49,15 +49,15 @@ class _SplashViewBodyState extends State<SplashViewBody> {
       setState(() {
         _opacirty = 1.0;
       });
-      Future.delayed(const Duration(seconds: 2), () {
-        context.read<UserCubit>().loadUser().then((_) {
-          final state = context.read<UserCubit>().state;
-          if (state is UserLoaded) {
-            GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
-          } else {
-            GoRouter.of(context).pushReplacement(AppRouter.kLoginView);
-          }
-        });
+      Future.delayed(const Duration(seconds: 2), () async {
+        await context.read<UserCubit>().loadUser();
+        final state = context.read<UserCubit>().state;
+
+        if (state is UserLoaded) {
+          GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
+        } else {
+          GoRouter.of(context).pushReplacement(AppRouter.kLoginView);
+        }
       });
     });
   }
