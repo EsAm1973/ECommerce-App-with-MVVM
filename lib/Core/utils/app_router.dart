@@ -9,7 +9,9 @@ import 'package:ecommerce_app/Features/Authenticate/presentation/views/login_vie
 import 'package:ecommerce_app/Features/Authenticate/presentation/views/signup_view.dart';
 import 'package:ecommerce_app/Features/FavoriteProducts/presentation/views/favorite_view.dart';
 import 'package:ecommerce_app/Core/models/productModel.dart';
+import 'package:ecommerce_app/Features/home/data/repos/category_repo_impl.dart';
 import 'package:ecommerce_app/Features/home/data/repos/fetch_prodrepo_impl.dart';
+import 'package:ecommerce_app/Features/home/presentation/manager/FetchCategory/category_cubit.dart';
 import 'package:ecommerce_app/Features/home/presentation/manager/FetchProducts/product_cubit.dart';
 import 'package:ecommerce_app/Features/home/presentation/views/details_view.dart';
 import 'package:ecommerce_app/Features/home/presentation/views/home_view.dart';
@@ -62,10 +64,18 @@ abstract class AppRouter {
             routes: [
               GoRoute(
                 path: kHomeView,
-                builder: (context, state) => BlocProvider(
-                  create: (context) => ProductCubit(
-                    FetchProductRepoImpl(ApiService(dio: Dio())),
-                  )..fetchProducts(),
+                builder: (context, state) => MultiBlocProvider(
+                  providers: [
+                    BlocProvider(
+                      create: (context) => CategoryCubit(
+                          FetchCategoryRepoImpl(ApiService(dio: Dio())))
+                        ..fetchCategories(),
+                    ),
+                    BlocProvider(
+                      create: (context) => ProductCubit(
+                          FetchProductRepoImpl(ApiService(dio: Dio()))),
+                    ),
+                  ],
                   child: const HomeView(),
                 ),
               ),

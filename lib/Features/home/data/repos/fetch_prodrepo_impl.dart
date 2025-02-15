@@ -10,11 +10,15 @@ class FetchProductRepoImpl implements FetchProductRepo {
   FetchProductRepoImpl(this.apiService);
 
   @override
-  Future<Either<Failure, List<Product>>> fetchProducts() async {
+  Future<Either<Failure, List<Product>>> fetchProducts(
+      {int? categoryId}) async {
     final headers = {'lang': 'en'};
+    String url = 'https://student.valuxapps.com/api/products';
+    if (categoryId != null) {
+      url += '?category_id=$categoryId';
+    }
     try {
-      final response = await apiService
-          .get('https://student.valuxapps.com/api/products', headers: headers);
+      final response = await apiService.get(url, headers: headers);
       print(response);
 
       // Validate response structure

@@ -1,34 +1,53 @@
-import 'package:ecommerce_app/Core/utils/styles.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ecommerce_app/Features/home/data/models/categorydart';
 import 'package:flutter/material.dart';
 
 class CategoryItem extends StatelessWidget {
-  const CategoryItem({super.key, required this.title, required this.imagePath});
-  final String title;
-  final String imagePath;
+  final Category category;
+  final bool isSelected;
+  final VoidCallback onTap;
+
+  const CategoryItem({
+    super.key,
+    required this.category,
+    required this.isSelected,
+    required this.onTap,
+  });
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          height: 80,
-          width: 80,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(50),
-            color: Colors.red,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: EdgeInsets.all(5),
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: isSelected ? Colors.red : Colors.transparent,
+            width: 2,
           ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(50),
-            child: Image.asset(imagePath),
-          ),
+          borderRadius: BorderRadius.circular(8),
         ),
-        const SizedBox(
-          height: 5,
+        child: Column(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: CachedNetworkImage(
+                imageUrl: category.image,
+                width: 80,
+                height: 80,
+                fit: BoxFit.cover,
+              ),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              category.name,
+              style: TextStyle(
+                color: isSelected ? Colors.red : Colors.black,
+              ),
+            ),
+          ],
         ),
-        Text(
-          title,
-          style: Styles.textStyle16,
-        )
-      ],
+      ),
     );
   }
 }

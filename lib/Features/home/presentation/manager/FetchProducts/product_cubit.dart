@@ -8,9 +8,15 @@ part 'product_state.dart';
 class ProductCubit extends Cubit<ProductState> {
   ProductCubit(this.fetchProductRepo) : super(ProductInitial());
   final FetchProductRepo fetchProductRepo;
-  Future<void> fetchProducts() async {
+  int? selectedCategoryId;
+
+  void selectCategory(int categoryId) {
+    selectedCategoryId = categoryId;
+  }
+
+  Future<void> fetchProducts({int? categoryId}) async {
     emit(ProductLoading());
-    final result = await fetchProductRepo.fetchProducts();
+    final result = await fetchProductRepo.fetchProducts(categoryId: categoryId);
     result.fold(
       (failure) => emit(ProductFailure(errorMessage: failure.errorMessage)),
       (products) => emit(
