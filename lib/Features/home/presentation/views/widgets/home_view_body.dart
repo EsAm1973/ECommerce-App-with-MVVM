@@ -7,7 +7,6 @@ import 'package:ecommerce_app/Features/home/presentation/views/widgets/discount_
 import 'package:ecommerce_app/Features/home/presentation/views/widgets/flashsale_list.dart';
 import 'package:ecommerce_app/Features/home/presentation/views/widgets/flashsale_row.dart';
 import 'package:ecommerce_app/Features/home/presentation/views/widgets/search_textfeild.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

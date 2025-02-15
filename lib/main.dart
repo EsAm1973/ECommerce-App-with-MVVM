@@ -10,10 +10,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
-  runApp(BlocProvider(
-    create: (context) => FavoriteCubit(
-        favoriteRepository:
-            FavoriteRepositoryImpl(favoriteDatabase: FavoriteDatabase())),
+  runApp(MultiBlocProvider(
+    providers: [
+      BlocProvider(
+        create: (context) => FavoriteCubit(
+            favoriteRepository:
+                FavoriteRepositoryImpl(favoriteDatabase: FavoriteDatabase())),
+      ),
+      BlocProvider(
+        create: (context) => UserCubit(
+            userRepository: UserRepositoryImpl(userDatabase: UserDatabase())),
+      ),
+    ],
     child: const MyApp(),
   ));
 }
@@ -22,15 +30,11 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => UserCubit(
-          userRepository: UserRepositoryImpl(userDatabase: UserDatabase())),
-      child: MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        routerConfig: AppRouter.router,
-        theme: ThemeData.light().copyWith(
-          scaffoldBackgroundColor: kPrimaryColor,
-        ),
+    return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
+      routerConfig: AppRouter.router,
+      theme: ThemeData.light().copyWith(
+        scaffoldBackgroundColor: kPrimaryColor,
       ),
     );
   }
