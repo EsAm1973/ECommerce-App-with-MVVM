@@ -19,7 +19,6 @@ class FetchProductRepoImpl implements FetchProductRepo {
     }
     try {
       final response = await apiService.get(url, headers: headers);
-      print(response);
 
       // Validate response structure
       if (response is! Map<String, dynamic> || response['status'] == null) {

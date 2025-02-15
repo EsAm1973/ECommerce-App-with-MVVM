@@ -49,7 +49,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
       setState(() {
         _opacirty = 1.0;
       });
-      Future.delayed(const Duration(seconds: 2), () async {
+      Future.delayed(const Duration(seconds: 1), () async {
         await context.read<UserCubit>().loadUser();
         final state = context.read<UserCubit>().state;
 

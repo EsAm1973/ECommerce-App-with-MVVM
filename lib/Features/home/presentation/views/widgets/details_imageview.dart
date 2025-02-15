@@ -81,7 +81,6 @@ class _TopBarAndPhotosState extends State<TopBarAndPhotos> {
                 ),
                 child: BlocBuilder<FavoriteCubit, FavoriteState>(
                   builder: (context, state) {
-                    final cubit = context.read<FavoriteCubit>();
                     bool isFavorite = false;
                     if (state is FavoriteLoaded) {
                       isFavorite =

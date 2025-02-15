@@ -35,7 +35,7 @@ class RegisterRepoImplement implements RegisterRepo {
           ),
         );
       } else {
-        print(response);
+        //print(response);
         return right(response);
       }
     } on Exception catch (e) {

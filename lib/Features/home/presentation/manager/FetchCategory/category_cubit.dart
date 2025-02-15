@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:ecommerce_app/Features/home/data/models/categorydart';
+import 'package:ecommerce_app/Features/home/data/models/category.dart';
 import 'package:ecommerce_app/Features/home/data/repos/category_repo.dart';
 import 'package:equatable/equatable.dart';
 

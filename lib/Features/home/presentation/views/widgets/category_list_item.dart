@@ -1,5 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:ecommerce_app/Features/home/data/models/categorydart';
+import 'package:ecommerce_app/Features/home/data/models/category.dart';
 import 'package:flutter/material.dart';
 
 class CategoryItem extends StatelessWidget {
@@ -33,6 +33,9 @@ class CategoryItem extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
               child: CachedNetworkImage(
                 imageUrl: category.image,
+                placeholder: (context, url) => const Center(
+                  child: CircularProgressIndicator(),
+                ),
                 width: 80,
                 height: 80,
                 fit: BoxFit.cover,

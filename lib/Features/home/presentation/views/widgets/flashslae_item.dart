@@ -55,7 +55,7 @@ class FlashSaleListItem extends StatelessWidget {
           Row(
             children: [
               Text(
-                product.price.toString(),
+                '\$${product.price.toStringAsFixed(0)}',
                 style: Styles.textStyle20.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
@@ -64,7 +64,7 @@ class FlashSaleListItem extends StatelessWidget {
                 width: 15,
               ),
               Text(
-                product.oldPrice.toString(),
+                '\$${product.oldPrice.toStringAsFixed(0)}',
                 style: Styles.textStyle14.copyWith(
                   decoration: TextDecoration.lineThrough,
                 ),

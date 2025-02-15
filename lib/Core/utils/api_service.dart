@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:ecommerce_app/Core/utils/network_insepector.dart';
 import 'package:ecommerce_app/constants.dart';
 
 class ApiService {
@@ -10,12 +9,11 @@ class ApiService {
             Dio(BaseOptions(
               baseUrl: baseUrl,
               headers: {'Content-Type': 'application/json'},
-            ))
-          ..interceptors.add(LoggingInterceptor());
+            ));
 
   Future<dynamic> get(String endPoint, {Map<String, dynamic>? headers}) async {
-    final fullUrl = '${dio.options.baseUrl}$endPoint';
-    print('Full URL: $fullUrl');
+    //final fullUrl = '${dio.options.baseUrl}$endPoint';
+    //print('Full URL: $fullUrl');
     final response =
         await dio.get(endPoint, options: Options(headers: headers));
     return response.data;
@@ -23,8 +21,8 @@ class ApiService {
 
   Future<dynamic> post(String endPoint, Map<String, dynamic>? data,
       {Map<String, dynamic>? headers}) async {
-    final fullUrl = '${dio.options.baseUrl}$endPoint';
-    print('Full URL: $fullUrl');
+    // final fullUrl = '${dio.options.baseUrl}$endPoint';
+    // print('Full URL: $fullUrl');
     final response = await dio.post(endPoint,
         data: data, options: Options(headers: headers));
     return response.data;

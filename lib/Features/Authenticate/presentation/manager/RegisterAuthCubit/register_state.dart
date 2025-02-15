@@ -9,8 +9,6 @@ sealed class RegisterState extends Equatable {
 
 final class RegisterInitial extends RegisterState {}
 
-final class RegisterAuthInitial extends RegisterState {}
-
 final class RegisterAuthLoading extends RegisterState {}
 
 final class RegisterAuthSuccess extends RegisterState {

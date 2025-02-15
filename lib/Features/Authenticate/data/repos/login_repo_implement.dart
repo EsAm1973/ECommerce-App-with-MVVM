@@ -28,7 +28,7 @@ class LoginRepoImplement implements LoginRepo {
           ),
         );
       } else {
-        final userData=response['data'];
+        final userData = response['data'];
         return right(userData);
       }
     } on Exception catch (e) {

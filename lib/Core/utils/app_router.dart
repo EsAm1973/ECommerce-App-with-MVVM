@@ -59,7 +59,6 @@ abstract class AppRouter {
           return ScaffoldWithNavBar(navigationShell: navigationShell);
         },
         branches: [
-          // Home Branch
           StatefulShellBranch(
             routes: [
               GoRoute(

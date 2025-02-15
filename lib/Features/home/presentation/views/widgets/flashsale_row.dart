@@ -14,33 +14,31 @@ class FlashSaleRow extends StatelessWidget {
           style: Styles.textStyle30,
         ),
         const Spacer(),
-        Container(
-          child: Row(
-            children: [
-              Text(
-                'See all',
-                style: Styles.textStyle18.copyWith(fontWeight: FontWeight.w300),
+        Row(
+          children: [
+            Text(
+              'See all',
+              style: Styles.textStyle18.copyWith(fontWeight: FontWeight.w300),
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            Container(
+              width: 30,
+              height: 30,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(50),
+                color: Colors.grey.shade200,
               ),
-              const SizedBox(
-                width: 10,
-              ),
-              Container(
-                width: 30,
-                height: 30,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  color: Colors.grey.shade200,
-                ),
-                child: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.arrow_forward_ios,
-                    size: 15,
-                  ),
+              child: IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.arrow_forward_ios,
+                  size: 15,
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         )
       ],
     );
