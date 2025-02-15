@@ -1,5 +1,7 @@
+import 'package:ecommerce_app/Core/utils/app_router.dart';
 import 'package:ecommerce_app/Core/utils/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class FlashSaleRow extends StatelessWidget {
   const FlashSaleRow({super.key});
@@ -31,7 +33,9 @@ class FlashSaleRow extends StatelessWidget {
                 color: Colors.grey.shade200,
               ),
               child: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  GoRouter.of(context).push(AppRouter.kFlashSaleView);
+                },
                 icon: const Icon(
                   Icons.arrow_forward_ios,
                   size: 15,

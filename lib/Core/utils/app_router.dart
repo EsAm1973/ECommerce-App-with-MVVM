@@ -13,6 +13,7 @@ import 'package:ecommerce_app/Features/home/data/repos/category_repo_impl.dart';
 import 'package:ecommerce_app/Features/home/data/repos/fetch_prodrepo_impl.dart';
 import 'package:ecommerce_app/Features/home/presentation/manager/FetchCategory/category_cubit.dart';
 import 'package:ecommerce_app/Features/home/presentation/manager/FetchProducts/product_cubit.dart';
+import 'package:ecommerce_app/Features/home/presentation/views/all_flashsale_view.dart';
 import 'package:ecommerce_app/Features/home/presentation/views/details_view.dart';
 import 'package:ecommerce_app/Features/home/presentation/views/home_view.dart';
 import 'package:ecommerce_app/Features/splash/presentation/views/splash_view.dart';
@@ -26,6 +27,7 @@ abstract class AppRouter {
   static const String kHomeView = '/home_view';
   static const String kDetailsView = '/details_view';
   static const String kFavoritesView = '/favorites_view';
+  static const String kFlashSaleView = '/flashsale_view';
 
   static final router = GoRouter(routes: [
     GoRoute(
@@ -52,6 +54,15 @@ abstract class AppRouter {
       path: kDetailsView,
       builder: (context, state) => DetailsView(
         product: state.extra as Product,
+      ),
+    ),
+    GoRoute(
+      path: kFlashSaleView,
+      builder: (context, state) => BlocProvider(
+        create: (context) =>
+            ProductCubit(FetchProductRepoImpl(ApiService(dio: Dio())))
+              ..fetchProducts(),
+        child: const AllFlashsaleView(),
       ),
     ),
     StatefulShellRoute.indexedStack(
