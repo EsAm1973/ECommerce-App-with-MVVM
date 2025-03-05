@@ -22,7 +22,7 @@ class AllFlashsaleView extends StatelessWidget {
           ),
         ),
       ),
-      body: AllFlashsaleViewBody(),
+      body: const AllFlashsaleViewBody(),
     ));
   }
 }

@@ -7,6 +7,7 @@ import 'package:ecommerce_app/Features/Authenticate/presentation/manager/LoginAu
 import 'package:ecommerce_app/Features/Authenticate/presentation/manager/RegisterAuthCubit/register_cubit.dart';
 import 'package:ecommerce_app/Features/Authenticate/presentation/views/login_view.dart';
 import 'package:ecommerce_app/Features/Authenticate/presentation/views/signup_view.dart';
+import 'package:ecommerce_app/Features/Cart/presentation/views/cart_view.dart';
 import 'package:ecommerce_app/Features/FavoriteProducts/presentation/views/favorite_view.dart';
 import 'package:ecommerce_app/Core/models/productModel.dart';
 import 'package:ecommerce_app/Features/home/data/repos/category_repo_impl.dart';
@@ -28,6 +29,7 @@ abstract class AppRouter {
   static const String kDetailsView = '/details_view';
   static const String kFavoritesView = '/favorites_view';
   static const String kFlashSaleView = '/flashsale_view';
+  static const String kCartView = '/cart_view';
 
   static final router = GoRouter(routes: [
     GoRoute(
@@ -97,6 +99,14 @@ abstract class AppRouter {
               GoRoute(
                 path: kFavoritesView,
                 builder: (context, state) => const FavoriteView(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: kCartView,
+                builder: (context, state) => const CartView(),
               ),
             ],
           ),
