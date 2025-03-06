@@ -20,6 +20,8 @@ class CartItemsListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      //لحفاظ على الموقع الحالي فى حالة الحذف
+      key: const PageStorageKey<String>('cart_list'),
       itemCount: cartItems.length,
       itemBuilder: (context, index) {
         final cartItem = cartItems[index];

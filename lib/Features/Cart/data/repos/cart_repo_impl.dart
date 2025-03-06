@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:ecommerce_app/Core/data/database/cart_database.dart';
+import 'package:ecommerce_app/Core/errors/database_failure.dart';
 import 'package:ecommerce_app/Core/models/productModel.dart';
 import 'package:ecommerce_app/Features/Cart/data/models/cart_item.dart';
 import 'package:ecommerce_app/Features/Cart/data/repos/cart_repo.dart';
@@ -40,7 +41,7 @@ class CartRepositoryImpl implements CartRepo {
       await dbHelper.insertCartItem(userId, product, 1);
     } catch (e) {
       // إذا كان المنتج موجوداً بالفعل سيتم رمي Exception لتبليغ المستخدم
-      throw Exception('المنتج موجود بالفعل في الـ Cart');
+      throw DuplicateProductException();
     }
   }
 

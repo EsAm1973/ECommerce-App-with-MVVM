@@ -13,10 +13,19 @@ final class CartLoading extends CartState {}
 
 final class CartSuccess extends CartState {
   final List<CartItem> cartItems;
-  const CartSuccess({required this.cartItems});
+  // خريطة تختزن حالة الاختيار لكل منتج: true إذا تم اختياره، false خلاف ذلك
+  final Map<int, bool> selectedItems;
+  const CartSuccess({
+    required this.cartItems,
+    required this.selectedItems,
+  });
+  @override
+  List<Object> get props => [cartItems, selectedItems];
 }
 
 final class CartFailure extends CartState {
   final String errorMessage;
   const CartFailure({required this.errorMessage});
+  @override
+  List<Object> get props => [errorMessage];
 }

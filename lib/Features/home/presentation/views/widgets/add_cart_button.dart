@@ -13,17 +13,16 @@ class AddCartButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomIconTextButton(
       onPressed: () async {
-        try {
-          await context.read<CartCubit>().addProduct(
-                context.read<UserCubit>().currentUser!.id,
-                product,
-              );
+        bool added = await context
+            .read<CartCubit>()
+            .addProduct(context.read<UserCubit>().currentUser!.id, product);
+        if (added) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Product added to cart')),
           );
-        } catch (e) {
+        } else {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Product Already in cart')),
+            const SnackBar(content: Text('Product already in cart')),
           );
         }
       },

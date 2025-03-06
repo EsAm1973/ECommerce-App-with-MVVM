@@ -77,7 +77,7 @@ class CartItemTile extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      '${product.price}',
+                      '\$${product.price}',
                       style: const TextStyle(
                           fontSize: 16, fontWeight: FontWeight.bold),
                     ),
