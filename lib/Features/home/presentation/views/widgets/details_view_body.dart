@@ -17,7 +17,9 @@ class DetailsViewBody extends StatelessWidget {
         children: [
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.50,
-            child:  TopBarAndPhotos(product: product,),
+            child: TopBarAndPhotos(
+              product: product,
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(20),
@@ -37,7 +39,9 @@ class DetailsViewBody extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                 PriceContainer(price: product.price,),
+                PriceContainer(
+                  price: product.price,
+                ),
                 const SizedBox(
                   height: 20,
                 ),
@@ -47,8 +51,12 @@ class DetailsViewBody extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                const AddCartButton(),
-                const SizedBox(height: 5,),
+                AddCartButton(
+                  product: product,
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
               ],
             ),
           )

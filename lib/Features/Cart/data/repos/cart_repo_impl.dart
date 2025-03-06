@@ -5,7 +5,9 @@ import 'package:ecommerce_app/Features/Cart/data/models/cart_item.dart';
 import 'package:ecommerce_app/Features/Cart/data/repos/cart_repo.dart';
 
 class CartRepositoryImpl implements CartRepo {
-  final CartDatabase dbHelper = CartDatabase();
+  final CartDatabase dbHelper;
+
+  CartRepositoryImpl({required this.dbHelper});
 
   @override
   Future<List<CartItem>> getCartItems(int userId) async {

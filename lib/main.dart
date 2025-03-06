@@ -1,8 +1,11 @@
 import 'package:ecommerce_app/Core/data/UserCubit/user_cubit.dart';
+import 'package:ecommerce_app/Core/data/database/cart_database.dart';
 import 'package:ecommerce_app/Core/data/database/favorite_database.dart';
 import 'package:ecommerce_app/Core/data/database/user_database.dart';
 import 'package:ecommerce_app/Core/data/repositories/user_database_rep_impl.dart';
 import 'package:ecommerce_app/Core/utils/app_router.dart';
+import 'package:ecommerce_app/Features/Cart/data/repos/cart_repo_impl.dart';
+import 'package:ecommerce_app/Features/Cart/presentation/manager/Cart%20Cubit/cart_cubit.dart';
 import 'package:ecommerce_app/Features/FavoriteProducts/data/repos/favorite_repo_impl.dart';
 import 'package:ecommerce_app/Features/FavoriteProducts/presentation/manager/FavoriteCubit/favorite_cubit.dart';
 import 'package:ecommerce_app/constants.dart';
@@ -16,6 +19,10 @@ void main() {
         create: (context) => FavoriteCubit(
             favoriteRepository:
                 FavoriteRepositoryImpl(favoriteDatabase: FavoriteDatabase())),
+      ),
+      BlocProvider(
+        create: (context) =>
+            CartCubit(CartRepositoryImpl(dbHelper: CartDatabase())),
       ),
       BlocProvider(
         create: (context) => UserCubit(

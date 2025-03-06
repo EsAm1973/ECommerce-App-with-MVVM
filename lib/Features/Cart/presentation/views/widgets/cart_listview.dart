@@ -1,14 +1,18 @@
+import 'package:ecommerce_app/Features/Cart/data/models/cart_item.dart';
 import 'package:ecommerce_app/Features/Cart/presentation/views/widgets/cart_item_tile.dart';
 import 'package:flutter/material.dart';
 
 class CartItemsListView extends StatelessWidget {
-  final List<Map<String, dynamic>> cartItems;
+  final List<CartItem> cartItems;
+  final Map<int, bool> selectedItems;
   final ValueChanged<int> onItemChecked;
-  final void Function(int, bool) onQuantityChanged;
+  final void Function(int productId, bool isIncrement, int currentQuantity)
+      onQuantityChanged;
 
   const CartItemsListView({
     super.key,
     required this.cartItems,
+    required this.selectedItems,
     required this.onItemChecked,
     required this.onQuantityChanged,
   });
@@ -18,17 +22,20 @@ class CartItemsListView extends StatelessWidget {
     return ListView.builder(
       itemCount: cartItems.length,
       itemBuilder: (context, index) {
+        final cartItem = cartItems[index];
+        bool isChecked = selectedItems[cartItem.product.id] ?? false;
         return Column(
           children: [
-            CartItemTile(
-              name: cartItems[index]['name'],
-              imageUrl: cartItems[index]['imageUrl'],
-              price: cartItems[index]['price'],
-              quantity: cartItems[index]['quantity'],
-              isChecked: cartItems[index]['isChecked'],
-              onChanged: (value) => onItemChecked(index),
-              onQuantityChanged: (isIncrement) =>
-                  onQuantityChanged(index, isIncrement),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              child: CartItemTile(
+                product: cartItem.product,
+                quantity: cartItem.quantity,
+                isChecked: isChecked,
+                onChanged: (value) => onItemChecked(cartItem.product.id),
+                onQuantityChanged: (isIncrement) => onQuantityChanged(
+                    cartItem.product.id, isIncrement, cartItem.quantity),
+              ),
             ),
             const Divider(),
           ],
