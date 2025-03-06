@@ -32,6 +32,11 @@ class _CartViewBodyState extends State<CartViewBody> {
         if (state is CartLoading) {
           return const Center(child: CircularProgressIndicator());
         } else if (state is CartSuccess) {
+          if (state.cartItems.isEmpty) {
+            return const Center(
+              child: Text("Cart is empty"),
+            );
+          }
           // تحديد حالة select all بناءً على حالة كل عنصر في الخريطة
           bool selectAll = state.selectedItems.isNotEmpty &&
               state.selectedItems.values.every((v) => v);
