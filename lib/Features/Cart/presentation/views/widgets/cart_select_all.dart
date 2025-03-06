@@ -11,9 +11,9 @@ class CartSelectAll extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      contentPadding: const EdgeInsets.symmetric(horizontal: 5),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 0),
       leading: Transform.scale(
-        scale: 1.4,
+        scale: 1.3,
         child: Checkbox(
           value: isChecked,
           onChanged: onChanged,
